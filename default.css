@@ -1,0 +1,521 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body, td {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 10pt;
+}
+
+html, body
+{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#site-header
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    padding: 0 10px;
+    background: #356AA0;
+    color: #eee;
+    line-height: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-bottom: solid 1px black;
+}
+
+#site-header a
+{
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    vertical-align: middle;
+    padding: 0 10px;
+}
+
+#site-header a:hover
+{
+    background: #457AB0;
+}
+
+#site-header h1
+{
+    position: relative;
+    display: inline;
+    color: inherit;
+    font-weight: bold;
+    font-size: 14pt;
+    line-height: 40px;
+    padding-left: 30px;
+}
+
+#site-header h1:before
+{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top: -14px;
+    width: 24px;
+    height: 24px;
+    background-image: url('images/logo.png');
+    background-size: 24px 24px;
+}
+
+#site-header ul
+{
+    margin-left: 60px;
+    display: inline-block;
+    height: 100%;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+#site-header li
+{
+    display: inline-block;
+    height: 100%;
+    margin-left: 10px;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+#site-header li > a
+{
+    text-decoration: none;
+    color: inherit;
+    font-size: 11pt;
+    font-weight: normal;
+    line-height: 280%;
+}
+
+#site-header li > a:hover
+{
+    border-bottom: solid 4px #A5BAD0;
+}
+
+#page-wrapper
+{
+    position: absolute;
+    top: 80px;
+    left: 400px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 0 25px;
+}
+
+.test-runs
+{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    
+    color: #444;
+    background: #eee;
+    border-bottom: solid 1px #ccc;
+}
+
+.test-runs h1
+{
+    position: relative;
+    display: inline;
+    color: inherit;
+    font-weight: bold;
+    font-size: 12pt;
+    line-height: 40px;
+    padding-left: 430px;
+}
+
+.test-filter
+{
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 400px;
+    bottom: 0;
+    
+    color: #444;
+    background: #eee;
+    font-size: small;
+    border-right: solid 1px #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.test-filter .field-filter {
+    padding: 0.5em 1em 0.5em 2em;
+    border-bottom: solid 1px #ccc;
+    color: #444;
+}
+
+.test-filter .field-filter[selected] {
+    background: #f8f8f8;
+}
+
+.test-filter .field-title {
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    margin-left: -1em;
+    margin-bottom: 0.5em;
+}
+
+.test-filter .field-title:before {
+    content: '▾';
+    margin-right: 0.5em;
+}
+
+.test-filter .field-filter[collapsed] .field-title:before {
+    content: '▸';
+}
+
+.test-filter .field-filter[collapsed] * {
+    display: none
+}
+
+.test-filter .field-filter[collapsed] .field-title {
+    display: block;
+}
+
+.test-filter .multi-option {
+    position: relative;
+}
+
+.test-filter .multi-option > input {
+    margin-right: 0.2em;
+}
+
+.test-filter .multi-option * {
+    vertical-align: middle;
+}
+
+.test-filter .multi-option .filter-value {
+    position: absolute;
+    right: 0;
+    top: 1px;
+    text-align: right;
+    color: #aaa;
+}
+
+.test-filter .multi-option:hover {
+    cursor: pointer;
+    color: #4040c0;
+}
+
+
+.test-filter .multi-option:hover .filter-value {
+    color: #444;
+}
+
+.test-filter .multi-option[useless] {
+    opacity: 0.3;
+}
+
+.filter-toggle
+{
+    position: absolute;
+    left: 400px;
+    top: 85px;
+    width: 20px;
+    height: 30px;
+    border: solid 1px gray;
+    border-left: none;
+    background: #f8f8f8;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+    color: gray;
+    padding-right: 2px;
+}
+
+.filter-toggle:hover
+{
+    background: #ccc;
+}
+
+.filter-toggle:after
+{
+    display: block;
+    content: '«';
+    text-align: center;
+    font-size: 20px;
+}
+
+body[filter-collapsed] .test-filter
+{
+    display: none;
+}
+
+body[filter-collapsed] #page-wrapper
+{
+    left: 0;
+}
+
+body[filter-collapsed] .filter-toggle
+{
+    left: 0px;
+}
+
+body[filter-collapsed] .filter-toggle:after
+{
+    content: '»';
+}
+
+
+.test-types,
+.test-suites,
+.test-cases
+{
+    padding-left: 1em;
+}
+
+.test-type > .title,
+.test-suite > .title,
+.test-case > .title
+{
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+}
+
+.test-type > .title:before,
+.test-suite > .title:before,
+.test-case > .title:before
+{
+    content: '▾';
+    margin-right: 0.5em;
+}
+
+.test-type > .title:hover,
+.test-suite > .title:hover,
+.test-case > .title:hover
+{
+    color: #3030a0;
+}
+
+.test-type[collapsed] > *+*,
+.test-suite[collapsed] > *+*,
+.test-case[collapsed] > *+*
+{
+    display: none;
+}
+
+.test-type[collapsed] > .title:before,
+.test-suite[collapsed] > .title:before,
+.test-case[collapsed] > .title:before
+{
+    content: '▸';
+}
+
+.test-case > *+*
+{
+    padding-bottom: 2em;
+}
+
+.marker {
+  position: absolute;
+  color: red;
+  font-size: smaller;
+}
+
+select, input
+{
+    background: white;
+    border: solid 1px #888;
+    height: 1.7em;
+}
+
+input
+{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+input.numeric
+{
+    text-align: right;
+}
+
+input[type="submit"]
+{
+    border: solid 1px #888;
+    padding-left: 1em;
+    padding-right: 1em;
+    background: #ddd;
+}
+
+input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #eee;
+}
+
+h1 {
+  font-size: larger;
+  text-align: center;
+  margin-top: 1em;
+  font-size: 14pt;
+}
+
+h2 {
+  font-size: larger;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 0.25em;
+  font-weight: bold;
+}
+
+h3, h4 {
+  text-align: center;
+}
+
+.tooltip {
+  position: absolute;
+  border: 1px solid black;
+  padding: 2px;
+  background-color: #fee;
+  width: auto;
+  height: auto;
+}
+
+.test-configuration
+{
+    padding-top: 1em;
+    text-align: center;
+}
+
+.graph-container
+{
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.graph-canvas
+{
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+}
+
+.graph-canvas .marker
+{
+    background: white;
+    opacity: 0.85;
+}
+
+.graph-legend 
+{
+    margin-top: 1em;
+    text-align: left;
+    font-size: small;
+}
+
+.graph-legend *
+{
+    vertical-align: middle;
+}
+
+.graph-legend .metric-group > input[type="checkbox"]
+{
+    margin-right: 0.5em;
+}
+
+.graph-legend .metric-group > div
+{
+    padding-left: 1em;
+}
+
+.graph-legend .metric
+{
+    display: inline-block;
+}
+
+.graph-legend .swatch
+{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: inset 1px gray;
+    cursor: pointer;
+    margin-right: 0.5em;
+}
+
+.graph-legend .swatch[disabled]
+{
+    opacity: 0.1;
+}
+
+
+.error
+{
+    color: red;
+    font-weight: bold;
+    margin: 1em;
+    text-align: center;
+}
+
+.nodata
+{
+    color: green;
+    font-weight: bold;
+    margin: 1em;
+    text-align: center;
+}
+
+*[loading]:before
+{
+    content: '';
+    display: block;
+    background-image: url(images/loading.gif);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    min-height: 40px;
+}
+
+.legend
+{
+    text-align: left;
+}
+
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    padding: 0.4em 1em;
+    font-size: 10pt;
+}
+
+.ui-tabs.ui-widget-content {
+    border: none;
+    background: none;
+}
+
+.ui-tabs .ui-widget-content.ui-tabs-panel {
+    border: solid 1px #aaaaaa;
+}
+
+.ui-tabs .ui-widget-header {
+    border: none;
+    background: none;
+    border-radius: 0;
+}
+
+.ui-spinner-input input {
+    margin: 0 0.5em;
+    font-size: inherit;
+}
